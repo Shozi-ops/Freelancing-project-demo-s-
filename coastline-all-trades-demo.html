@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coastline All-Trades — Building, Painting &amp; Installations</title>
+<style>
+  :root{
+    --ink: #1c2321;
+    --paper: #f1ede4;
+    --mortar: #c9b79c;
+    --roof: #4c6b5e;
+    --hazard: #d64545;
+    --hazard-dark: #a83535;
+    --line: rgba(28,35,33,0.14);
+    --font-display: 'Archivo Black', Impact, 'Arial Narrow', sans-serif;
+    --font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    --font-stencil: 'Oswald', 'Arial Narrow', sans-serif;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+
+  .wrap{ max-width:1140px; margin:0 auto; padding:0 24px; }
+
+  /* ---------- Hazard stripe divider (signature motif) ---------- */
+  .hazard-stripe{
+    height:14px;
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--hazard),
+      var(--hazard) 18px,
+      var(--ink) 18px,
+      var(--ink) 36px
+    );
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    background:var(--ink);
+    color:var(--paper);
+    position:sticky; top:0; z-index:50;
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 24px;
+  }
+  .brand{
+    font-family:var(--font-stencil);
+    font-weight:700;
+    font-size:1.35rem;
+    letter-spacing:0.5px;
+    text-transform:uppercase;
+    display:flex; align-items:center; gap:10px;
+  }
+  .brand .dot{ color:var(--hazard); }
+  .nav-links{ display:flex; gap:32px; font-size:0.95rem; font-weight:500; }
+  .nav-links a{ opacity:0.85; transition:opacity .2s; }
+  .nav-links a:hover{ opacity:1; color:var(--hazard); }
+  .nav-cta{
+    background:var(--hazard);
+    color:var(--paper);
+    padding:10px 18px;
+    font-weight:700;
+    font-size:0.9rem;
+    border-radius:2px;
+    letter-spacing:0.3px;
+  }
+  .nav-cta:hover{ background:var(--hazard-dark); }
+  .menu-btn{ display:none; background:none; border:none; color:var(--paper); font-size:1.6rem; cursor:pointer; }
+
+  @media (max-width:820px){
+    .nav-links{
+      position:absolute; top:100%; left:0; right:0;
+      background:var(--ink);
+      flex-direction:column;
+      padding:12px 24px 24px;
+      gap:18px;
+      display:none;
+    }
+    .nav-links.open{ display:flex; }
+    .menu-btn{ display:block; }
+    .nav-cta{ display:none; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    background:var(--ink);
+    color:var(--paper);
+    padding:96px 0 110px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(28,35,33,0.86), rgba(28,35,33,0.92)),
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(241,237,228,0.05) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(241,237,228,0.05) 40px);
+    pointer-events:none;
+  }
+  .hero-inner{ position:relative; z-index:2; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--font-stencil);
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:0.78rem;
+    color:var(--mortar);
+    border:1px solid rgba(241,237,228,0.3);
+    padding:6px 14px;
+    border-radius:999px;
+    margin-bottom:28px;
+    opacity:0;
+    animation:fadeUp .7s ease forwards;
+  }
+  .hero h1{
+    font-family:var(--font-display);
+    text-transform:uppercase;
+    font-size:clamp(2.6rem, 6.5vw, 5rem);
+    line-height:0.98;
+    letter-spacing:-1px;
+    max-width:820px;
+    opacity:0;
+    animation:fadeUp .7s ease .12s forwards;
+  }
+  .hero h1 span{
+    color:var(--hazard);
+    -webkit-text-stroke:0px;
+  }
+  .hero p.lede{
+    margin-top:26px;
+    max-width:520px;
+    font-size:1.1rem;
+    color:rgba(241,237,228,0.78);
+    opacity:0;
+    animation:fadeUp .7s ease .24s forwards;
+  }
+  .hero-actions{
+    margin-top:38px;
+    display:flex; gap:16px; flex-wrap:wrap;
+    opacity:0;
+    animation:fadeUp .7s ease .36s forwards;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:15px 26px;
+    font-weight:700;
+    font-size:0.95rem;
+    border-radius:2px;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn-primary{ background:var(--hazard); color:var(--paper); }
+  .btn-primary:hover{ background:var(--hazard-dark); transform:translateY(-2px); }
+  .btn-outline{ border:1px solid rgba(241,237,228,0.4); color:var(--paper); }
+  .btn-outline:hover{ border-color:var(--paper); transform:translateY(-2px); }
+
+  .hero-stats{
+    margin-top:64px;
+    display:flex; gap:48px; flex-wrap:wrap;
+    opacity:0;
+    animation:fadeUp .7s ease .48s forwards;
+  }
+  .hero-stats div strong{
+    display:block;
+    font-family:var(--font-stencil);
+    font-size:1.8rem;
+    color:var(--mortar);
+  }
+  .hero-stats div span{
+    font-size:0.82rem;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color:rgba(241,237,228,0.6);
+  }
+
+  @keyframes fadeUp{
+    from{ opacity:0; transform:translateY(16px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  /* ---------- Section shared ---------- */
+  section{ padding:88px 0; }
+  .section-head{ max-width:640px; margin-bottom:52px; }
+  .section-tag{
+    font-family:var(--font-stencil);
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:0.8rem;
+    color:var(--hazard);
+    margin-bottom:12px;
+    display:block;
+  }
+  .section-head h2{
+    font-family:var(--font-display);
+    text-transform:uppercase;
+    font-size:clamp(1.9rem, 4vw, 2.6rem);
+    letter-spacing:-0.5px;
+  }
+  .section-head p{
+    margin-top:16px;
+    color:rgba(28,35,33,0.7);
+    font-size:1.05rem;
+  }
+
+  /* ---------- Services ---------- */
+  .services{ background:var(--paper); }
+  .service-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .service-card{
+    background:var(--paper);
+    padding:34px 26px;
+    transition:background .2s ease;
+  }
+  .service-card:hover{ background:#e8e2d3; }
+  .service-num{
+    font-family:var(--font-stencil);
+    color:var(--roof);
+    font-size:0.85rem;
+    letter-spacing:1px;
+    margin-bottom:18px;
+  }
+  .service-card h3{
+    font-family:var(--font-stencil);
+    font-size:1.2rem;
+    text-transform:uppercase;
+    letter-spacing:0.3px;
+    margin-bottom:10px;
+  }
+  .service-card p{
+    font-size:0.92rem;
+    color:rgba(28,35,33,0.68);
+  }
+  @media (max-width:900px){
+    .service-grid{ grid-template-columns:repeat(2, 1fr); }
+  }
+  @media (max-width:560px){
+    .service-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- Before / After signature element ---------- */
+  .transform{ background:var(--ink); color:var(--paper); }
+  .transform .section-head p{ color:rgba(241,237,228,0.7); }
+  .transform .section-tag{ color:var(--mortar); }
+
+  .ba-slider{
+    position:relative;
+    max-width:820px;
+    aspect-ratio:16/9;
+    margin:0 auto;
+    border-radius:4px;
+    overflow:hidden;
+    cursor:ew-resize;
+    border:1px solid rgba(241,237,228,0.15);
+    user-select:none;
+  }
+  .ba-before, .ba-after{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column;
+    gap:8px;
+    text-align:center;
+  }
+  .ba-before{
+    background:
+      linear-gradient(135deg, #3a3d38, #24261f);
+  }
+  .ba-after{
+    background: linear-gradient(135deg, var(--roof), #2e433a);
+    clip-path: inset(0 0 0 50%);
+  }
+  .ba-label{
+    font-family:var(--font-stencil);
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:0.85rem;
+    padding:6px 16px;
+    border:1px solid rgba(241,237,228,0.35);
+    border-radius:999px;
+  }
+  .ba-cap{ font-size:0.85rem; color:rgba(241,237,228,0.55); max-width:280px; }
+  .ba-handle{
+    position:absolute; top:0; bottom:0; left:50%;
+    width:3px; background:var(--hazard);
+    transform:translateX(-50%);
+    pointer-events:none;
+  }
+  .ba-handle::after{
+    content:"⟷";
+    position:absolute; top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    background:var(--hazard);
+    color:var(--paper);
+    width:40px; height:40px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1rem;
+  }
+  .ba-hint{
+    text-align:center;
+    margin-top:18px;
+    font-size:0.82rem;
+    color:rgba(241,237,228,0.45);
+    text-transform:uppercase;
+    letter-spacing:1px;
+  }
+
+  /* ---------- Process ---------- */
+  .process{ background:var(--paper); }
+  .process-list{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:32px;
+  }
+  .process-step{ border-top:3px solid var(--roof); padding-top:18px; }
+  .process-step h4{
+    font-family:var(--font-stencil);
+    text-transform:uppercase;
+    font-size:1.05rem;
+    margin-bottom:8px;
+  }
+  .process-step p{ font-size:0.92rem; color:rgba(28,35,33,0.68); }
+  @media (max-width:900px){
+    .process-list{ grid-template-columns:repeat(2,1fr); }
+  }
+  @media (max-width:560px){
+    .process-list{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- Area / trust ---------- */
+  .area{ background:var(--mortar); }
+  .area-inner{
+    display:flex; justify-content:space-between; align-items:center; gap:40px; flex-wrap:wrap;
+  }
+  .area h2{
+    font-family:var(--font-display);
+    text-transform:uppercase;
+    font-size:clamp(1.6rem,3.5vw,2.2rem);
+    max-width:480px;
+    line-height:1.1;
+  }
+  .area-tags{ display:flex; gap:12px; flex-wrap:wrap; max-width:420px; }
+  .area-tags span{
+    background:var(--ink);
+    color:var(--paper);
+    font-size:0.82rem;
+    padding:8px 14px;
+    border-radius:999px;
+    font-weight:600;
+  }
+
+  /* ---------- Contact ---------- */
+  .contact{ background:var(--paper); }
+  .contact-box{
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:6px;
+    padding:56px;
+    display:flex; justify-content:space-between; align-items:center; gap:40px; flex-wrap:wrap;
+    position:relative;
+    overflow:hidden;
+  }
+  .contact-box::after{
+    content:"";
+    position:absolute; right:-40px; top:-40px;
+    width:180px; height:180px;
+    background:repeating-linear-gradient(-45deg, var(--hazard), var(--hazard) 12px, transparent 12px, transparent 24px);
+    opacity:0.18;
+    border-radius:50%;
+  }
+  .contact-box h2{
+    font-family:var(--font-display);
+    text-transform:uppercase;
+    font-size:clamp(1.7rem,4vw,2.3rem);
+    max-width:420px;
+    position:relative; z-index:2;
+  }
+  .contact-actions{ display:flex; gap:14px; flex-wrap:wrap; position:relative; z-index:2; }
+
+  /* ---------- Footer ---------- */
+  footer{ background:var(--ink); color:rgba(241,237,228,0.55); padding:36px 0; font-size:0.85rem; }
+  .footer-inner{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  footer strong{ color:var(--paper); }
+
+  /* ---------- Placeholder banner ---------- */
+  .placeholder-banner{
+    background:var(--hazard);
+    color:var(--paper);
+    text-align:center;
+    font-size:0.85rem;
+    font-weight:600;
+    padding:10px 16px;
+    letter-spacing:0.3px;
+  }
+
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="placeholder-banner">MOCKUP PREVIEW — business name, services &amp; contact details are placeholders, swap in the real info once confirmed</div>
+
+<header>
+  <div class="nav wrap">
+    <div class="brand"><span class="dot">●</span> Coastline All-Trades</div>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#services">Services</a>
+      <a href="#work">Our Work</a>
+      <a href="#process">How It Works</a>
+      <a href="#area">Areas Covered</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="nav-cta">Get a Quote</a>
+  </div>
+</header>
+
+<div class="hazard-stripe"></div>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <span class="eyebrow">South Coast, KZN &nbsp;·&nbsp; General Building &amp; Maintenance</span>
+    <h1>One call<br>fixes it <span>properly.</span></h1>
+    <p class="lede">Building, painting, installations and general maintenance — handled by one reliable all-rounder who shows up, quotes straight, and finishes the job.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
+      <a href="#services" class="btn btn-outline">See What We Do</a>
+    </div>
+    <div class="hero-stats">
+      <div><strong>4</strong><span>Trades Under One Roof</span></div>
+      <div><strong>South Coast</strong><span>Based &amp; Local</span></div>
+      <div><strong>Free</strong><span>Quotes, No Obligation</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="hazard-stripe"></div>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag">What We Do</span>
+      <h2>Four trades. One reliable contact.</h2>
+      <p>No juggling separate contractors for every small job — building, painting, installations and maintenance, all handled by the same team.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="service-grid reveal">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <h3>Building &amp; Renovations</h3>
+        <p>Brickwork, plastering, extensions, repairs and small renovation projects done to code.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <h3>Painting</h3>
+        <p>Interior and exterior painting, prep work, waterproofing and finishing coats that last.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <h3>Installations</h3>
+        <p>Fixtures, fittings, shelving, doors, gates and general fit-outs installed properly.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <h3>General Maintenance</h3>
+        <p>Ongoing upkeep, repairs and callouts for homes and small businesses — big or small.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="transform" id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag">Our Work</span>
+      <h2>See the difference.</h2>
+      <p>Drag the slider to compare a job before and after. Swap this out with real photos once we have them.</p>
+    </div>
+    <div class="ba-slider reveal" id="baSlider">
+      <div class="ba-before">
+        <span class="ba-label">Before</span>
+        <span class="ba-cap">Worn walls, cracked paint, tired finish</span>
+      </div>
+      <div class="ba-after" id="baAfter">
+        <span class="ba-label">After</span>
+        <span class="ba-cap">Fresh coat, clean lines, job done right</span>
+      </div>
+      <div class="ba-handle" id="baHandle"></div>
+    </div>
+    <p class="ba-hint">Drag to compare — replace with real project photos</p>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag">How It Works</span>
+      <h2>Simple, from callout to finish.</h2>
+    </div>
+    <div class="process-list reveal">
+      <div class="process-step">
+        <h4>Get In Touch</h4>
+        <p>WhatsApp, call or send a message with what needs doing.</p>
+      </div>
+      <div class="process-step">
+        <h4>Free Quote</h4>
+        <p>A site visit if needed, then a straight quote — no surprises later.</p>
+      </div>
+      <div class="process-step">
+        <h4>We Get To Work</h4>
+        <p>Scheduled, on time, with the right materials for the job.</p>
+      </div>
+      <div class="process-step">
+        <h4>Job Signed Off</h4>
+        <p>Walkthrough together before we call it done.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="area" id="area">
+  <div class="wrap area-inner">
+    <h2>Covering homes and small businesses across the South Coast</h2>
+    <div class="area-tags">
+      <span>Margate</span>
+      <span>Ramsgate</span>
+      <span>Uvongo</span>
+      <span>Shelly Beach</span>
+      <span>Southbroom</span>
+      <span>+ surrounds</span>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-box reveal">
+      <h2>Got a job that needs sorting? Let's talk.</h2>
+      <div class="contact-actions">
+        <a href="#" class="btn btn-primary">WhatsApp Us</a>
+        <a href="#" class="btn btn-outline">Call Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div><strong>Coastline All-Trades</strong> — Building · Painting · Installations · Maintenance</div>
+    <div>South Coast, KwaZulu-Natal · Placeholder contact details</div>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Before/after slider
+  const slider = document.getElementById('baSlider');
+  const after = document.getElementById('baAfter');
+  const handle = document.getElementById('baHandle');
+  let dragging = false;
+
+  function setPos(clientX){
+    const rect = slider.getBoundingClientRect();
+    let pct = ((clientX - rect.left) / rect.width) * 100;
+    pct = Math.max(0, Math.min(100, pct));
+    after.style.clipPath = `inset(0 0 0 ${pct}%)`;
+    handle.style.left = pct + '%';
+  }
+
+  slider.addEventListener('mousedown', e => { dragging = true; setPos(e.clientX); });
+  window.addEventListener('mousemove', e => { if(dragging) setPos(e.clientX); });
+  window.addEventListener('mouseup', () => dragging = false);
+
+  slider.addEventListener('touchstart', e => setPos(e.touches[0].clientX));
+  slider.addEventListener('touchmove', e => setPos(e.touches[0].clientX));
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
