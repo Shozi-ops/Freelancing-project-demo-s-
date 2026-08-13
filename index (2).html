@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architectural Tech & Digital Solutions | Freelance Services</title>
+    <style>
+        /* ==========================================================================
+           COLOR PALETTE & DESIGN SYSTEM
+           ========================================================================== */
+        :root {
+            --bg-primary: #0F172A;       /* Dark Navy */
+            --bg-card: #1E293B;          /* Slate Card Background */
+            --bg-card-hover: #334155;    /* Hover State Slate */
+            --accent-teal: #14B8A6;      /* Vibrant Teal */
+            --accent-blue: #3B82F6;      /* Electric Blue */
+            --accent-amber: #F59E0B;     /* Warm Amber */
+            --text-main: #F8FAFC;        /* High Contrast White */
+            --text-muted: #94A3B8;       /* Subtle Grey */
+            --border-color: #334155;     /* Structural Borders */
+            --font-sans: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            --font-mono: 'Fira Code', 'Courier New', monospace;
+        }
+
+        /* ==========================================================================
+           GLOBAL RESETS & STYLES
+           ========================================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            color: var(--accent-teal);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--accent-blue);
+        }
+
+        /* ==========================================================================
+           NAVIGATION HEADER
+           ========================================================================== */
+        header {
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .brand-logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .brand-logo span {
+            color: var(--accent-teal);
+            font-family: var(--font-mono);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-teal);
+            background-color: rgba(20, 184, 166, 0.1);
+        }
+
+        /* ==========================================================================
+           PAGE CONTAINERS & ROUTING
+           ========================================================================== */
+        main {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-section {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==========================================================================
+           COMPONENTS: HERO & CARDS
+           ========================================================================== */
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem 4rem 1rem;
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0) 100%);
+            border-radius: 12px;
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--accent-teal), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 750px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--accent-teal), var(--accent-blue));
+            color: #ffffff;
+            font-weight: 700;
+            padding: 0.8rem 1.8rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(20, 184, 166, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(20, 184, 166, 0.4);
+            color: #ffffff;
+        }
+
+        /* Services Grid */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.75rem;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-teal);
+        }
+
+        .card-tag {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent-amber);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-main);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .card-deliverables {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+        }
+
+        .card-deliverables li {
+            font-size: 0.88rem;
+            color: var(--text-main);
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-deliverables li::before {
+            content: "✓";
+            color: var(--accent-teal);
+            font-weight: bold;
+        }
+
+        /* Filter Controls */
+        .filter-container {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--accent-blue);
+            color: #ffffff;
+            border-color: var(--accent-blue);
+        }
+
+        /* ==========================================================================
+           FORMS & CONTACT
+           ========================================================================== */
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-teal);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* ==========================================================================
+           FOOTER
+           ========================================================================== */
+        footer {
+            background-color: #090D16;
+            border-top: 1px solid var(--border-color);
+            padding: 2rem;
+            margin-top: auto;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* Responsive Design Rules */
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; gap: 1rem; }
+            .hero h1 { font-size: 1.8rem; }
+            .footer-content { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION HEADER -->
+    <header>
+        <div class="nav-container">
+            <div class="brand-logo">
+                <span>&lt;/&gt;</span> Digital Solutions
+            </div>
+            <nav>
+                <ul>
+                    <li><button class="nav-link active" onclick="switchPage('home')">Home</button></li>
+                    <li><button class="nav-link" onclick="switchPage('services')">Services</button></li>
+                    <li><button class="nav-link" onclick="switchPage('about')">About</button></li>
+                    <li><button class="nav-link" onclick="switchPage('contact')">Contact</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main>
+
+        <!-- PAGE 1: HOME -->
+        <section id="home" class="page-section active">
+            <div class="hero">
+                <h1>Technical Engineering &amp; <span>Digital Solutions</span></h1>
+                <p>Delivering secure, scalable web infrastructure, private local AI deployments, and specialized technical reconnaissance for modern organizations.</p>
+                <button class="cta-button" onclick="switchPage('contact')">Initiate Consultation</button>
+            </div>
+
+            <h2 style="margin-bottom: 1rem;">Core Practice Areas</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <div>
+                        <div class="card-tag">Engineering</div>
+                        <h3>Web Development</h3>
+                        <p>Full-stack Django applications, custom database design, and authenticated DNS infrastructure.</p>
+                    </div>
+                    <a href="#" onclick="switchPage('services'); filterServices('dev'); return false;">Explore Web Services &rarr;</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-tag">Specialization</div>
+                        <h3>Local AI Deployment</h3>
+                        <p>Private, zero-cloud open-weight LLM setups (Ollama, LM Studio) tailored to enterprise hardware.</p>
+                    </div>
+                    <a href="#" onclick="switchPage('services'); filterServices('ai'); return false;">Explore AI Orchestration &rarr;</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-tag">Security</div>
+                        <h3>OSINT Reconnaissance</h3>
+                        <p>Surface-level threat mapping, external asset auditing, and email authentication security checks.</p>
+                    </div>
+                    <a href="#" onclick="switchPage('services'); filterServices('sec'); return false;">Explore Recon Services &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 2: SERVICES -->
+        <section id="services" class="page-section">
+            <h1 style="margin-bottom: 0.5rem;">Service Catalog</h1>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Filter services by technical domain to view deliverable frameworks.</p>
+
+            <!-- Filter Controls -->
+            <div class="filter-container">
+                <button class="filter-btn active" onclick="filterServices('all')">All Services</button>
+                <button class="filter-btn" onclick="filterServices('dev')">Web &amp; Infrastructure</button>
+                <button class="filter-btn" onclick="filterServices('ai')">Local AI Orchestration</button>
+                <button class="filter-btn" onclick="filterServices('sec')">OSINT &amp; Auditing</button>
+                <button class="filter-btn" onclick="filterServices('ecom')">E-Commerce Architecture</button>
+            </div>
+
+            <!-- Service Items Grid -->
+            <div class="grid-3" id="service-items">
+                
+                <!-- Item 1 -->
+                <div class="card service-card" data-category="dev">
+                    <div>
+                        <div class="card-tag">Development</div>
+                        <h3>Full-Stack Application Setup</h3>
+                        <p>Custom Python/Django and relational database architecture tailored to operational workflows.</p>
+                        <ul class="card-deliverables">
+                            <li>Schema Design (SQLite / Supabase)</li>
+                            <li>Frontend Layout &amp; Responsiveness</li>
+                            <li>Deployment &amp; Cloud Routing</li>
+                        </ul>
+                    </div>
+                    <button class="cta-button" onclick="switchPage('contact')" style="width: 100%;">Select Service</button>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="card service-card" data-category="dev">
+                    <div>
+                        <div class="card-tag">Infrastructure</div>
+                        <h3>DNS &amp; Business Email Security</h3>
+                        <p>Full domain configuration to ensure high inbox deliverability and prevent domain spoofing.</p>
+                        <ul class="card-deliverables">
+                            <li>Cloudflare DNS Routing</li>
+                            <li>MX, SPF, DKIM &amp; DMARC Authentication</li>
+                            <li>Custom Mailbox Integration</li>
+                        </ul>
+                    </div>
+                    <button class="cta-button" onclick="switchPage('contact')" style="width: 100%;">Select Service</button>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="card service-card" data-category="ai">
+                    <div>
+                        <div class="card-tag">AI Engineering</div>
+                        <h3>Private Local LLM Setup</h3>
+                        <p>Self-hosted AI infrastructure operating entirely on local hardware with zero external data leak risk.</p>
+                        <ul class="card-deliverables">
+                            <li>Ollama / LM Studio Engine Setup</li>
+                            <li>Model Quantization &amp; Benchmarking</li>
+                            <li>Custom Terminal System Prompts</li>
+                        </ul>
+                    </div>
+                    <button class="cta-button" onclick="switchPage('contact')" style="width: 100%;">Select Service</button>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="card service-card" data-category="sec">
+                    <div>
+                        <div class="card-tag">Security</div>
+                        <h3>External Surface Reconnaissance</h3>
+                        <p>Passive OSINT analysis mapping public attack surfaces and exposed operational infrastructure.</p>
+                        <ul class="card-deliverables">
+                            <li>SpiderFoot &amp; theHarvester Scanning</li>
+                            <li>Subdomain &amp; Asset Mapping</li>
+                            <li>Actionable Exposure Report</li>
+                        </ul>
+                    </div>
+                    <button class="cta-button" onclick="switchPage('contact')" style="width: 100%;">Select Service</button>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="card service-card" data-category="ecom">
+                    <div>
+                        <div class="card-tag">E-Commerce</div>
+                        <h3>Multi-Store Digital Retail Setup</h3>
+                        <p>Scalable digital storefront configuration with localized payment gateway and logistics backend integration.</p>
+                        <ul class="card-deliverables">
+                            <li>Platform Setup &amp; Branding</li>
+                            <li>Payment Gateway Processing</li>
+                            <li>Inventory Schemas</li>
+                        </ul>
+                    </div>
+                    <button class="cta-button" onclick="switchPage('contact')" style="width: 100%;">Select Service</button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PAGE 3: ABOUT -->
+        <section id="about" class="page-section">
+            <h1 style="margin-bottom: 1.5rem;">About The Practice</h1>
+            
+            <div style="background-color: var(--bg-card); border: 1px solid var(--border-color); padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
+                <h3 style="color: var(--accent-teal); margin-bottom: 1rem;">Engineering Principles</h3>
+                <p style="margin-bottom: 1rem;">This technical practice focuses on delivering precise, decoupled, and secure software environments. By prioritizing self-hosted infrastructure, robust database structures, and objective threat assessments, systems remain under complete client control without unnecessary third-party dependencies.</p>
+                <p>Work is structured on a project basis or through dedicated retainer engagements, ensuring strict adherence to clear scope definitions and technical documentation.</p>
+            </div>
+
+            <h2>Technical Capability Matrix</h2>
+            <div class="grid-3" style="margin-top: 1rem;">
+                <div class="card">
+                    <div class="card-tag">Languages &amp; Frameworks</div>
+                    <h3 style="font-size: 1.1rem;">Python, Django, HTML5/CSS3, JavaScript, SQL</h3>
+                </div>
+                <div class="card">
+                    <div class="card-tag">AI &amp; Local Hardware</div>
+                    <h3 style="font-size: 1.1rem;">Ollama, LM Studio, Quantized GGUF Models</h3>
+                </div>
+                <div class="card">
+                    <div class="card-tag">Reconnaissance &amp; Auditing</div>
+                    <h3 style="font-size: 1.1rem;">SpiderFoot, Maltego, DNSSEC Verification</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 4: CONTACT -->
+        <section id="contact" class="page-section">
+            <h1 style="margin-bottom: 0.5rem;">Initiate a Project</h1>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Submit project parameters or technical service inquiries below.</p>
+
+            <div style="max-width: 650px; background-color: var(--bg-card); border: 1px solid var(--border-color); padding: 2rem; border-radius: 8px;">
+                <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Name or Organization</label>
+                        <input type="text" id="name" class="form-control" required placeholder="e.g., Jane Doe / Company Ltd">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" required placeholder="name@domain.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="service-type">Primary Service Required</label>
+                        <select id="service-type" class="form-control">
+                            <option value="web">Web Development &amp; Architecture</option>
+                            <option value="ai">Local AI Infrastructure</option>
+                            <option value="sec">OSINT &amp; Security Auditing</option>
+                            <option value="ecom">E-Commerce Setup</option>
+                            <option value="other">General Technical Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Scope Details / Project Parameters</label>
+                        <textarea id="message" class="form-control" required placeholder="Outline your technical requirements or system goals..."></textarea>
+                    </div>
+                    <button type="submit" class="cta-button" style="width: 100%;">Submit Inquiry</button>
+                </form>
+                <div id="formFeedback" style="display: none; margin-top: 1rem; padding: 1rem; background-color: rgba(20, 184, 166, 0.1); border: 1px solid var(--accent-teal); border-radius: 6px; color: var(--accent-teal);">
+                    Inquiry submitted. Response will be delivered via email within 24–48 hours.
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div>&copy; 2026 Technical Services Practice. All Rights Reserved.</div>
+            <div>Secure Infrastructure | Private AI | Web Engineering</div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT -->
+    <script>
+        // Page Switching Engine
+        function switchPage(pageId) {
+            // Hide all page sections
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => section.classList.remove('active'));
+
+            // Show selected page section
+            const targetSection = document.getElementById(pageId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            // Update Navigation state
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('onclick').includes(pageId)) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Service Catalog Dynamic Filtering
+        function filterServices(category) {
+            const cards = document.querySelectorAll('.service-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Update button active states
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('onclick').includes(category)) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Filter service grid items
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Contact Form Interactivity
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const feedback = document.getElementById('formFeedback');
+            const form = document.getElementById('contactForm');
+            
+            // Display confirmation feedback
+            feedback.style.display = 'block';
+            form.reset();
+        }
+    </script>
+</body>
+</html>
