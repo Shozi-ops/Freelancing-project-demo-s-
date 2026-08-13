@@ -531,18 +531,20 @@
             <p style="color: var(--text-muted); margin-bottom: 2rem;">Submit project parameters or technical service inquiries below.</p>
 
             <div style="max-width: 650px; background-color: var(--bg-card); border: 1px solid var(--border-color); padding: 2rem; border-radius: 8px;">
-                <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                
+                <!-- FormSubmit Integration targeting swshozi@icloud.com -->
+                <form action="https://formsubmit.co/swshozi@icloud.com" method="POST">
                     <div class="form-group">
                         <label for="name">Name or Organization</label>
-                        <input type="text" id="name" class="form-control" required placeholder="e.g., Jane Doe / Company Ltd">
+                        <input type="text" name="name" id="name" class="form-control" required placeholder="e.g., Jane Doe / Company Ltd">
                     </div>
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" class="form-control" required placeholder="name@domain.com">
+                        <input type="email" name="email" id="email" class="form-control" required placeholder="name@domain.com">
                     </div>
                     <div class="form-group">
                         <label for="service-type">Primary Service Required</label>
-                        <select id="service-type" class="form-control">
+                        <select name="service" id="service-type" class="form-control">
                             <option value="web">Web Development &amp; Architecture</option>
                             <option value="ai">Local AI Infrastructure</option>
                             <option value="sec">OSINT &amp; Security Auditing</option>
@@ -552,13 +554,11 @@
                     </div>
                     <div class="form-group">
                         <label for="message">Scope Details / Project Parameters</label>
-                        <textarea id="message" class="form-control" required placeholder="Outline your technical requirements or system goals..."></textarea>
+                        <textarea name="message" id="message" class="form-control" required placeholder="Outline your technical requirements or system goals..."></textarea>
                     </div>
                     <button type="submit" class="cta-button" style="width: 100%;">Submit Inquiry</button>
                 </form>
-                <div id="formFeedback" style="display: none; margin-top: 1rem; padding: 1rem; background-color: rgba(20, 184, 166, 0.1); border: 1px solid var(--accent-teal); border-radius: 6px; color: var(--accent-teal);">
-                    Inquiry submitted. Response will be delivered via email within 24–48 hours.
-                </div>
+
             </div>
         </section>
 
@@ -620,17 +620,6 @@
                     card.style.display = 'none';
                 }
             });
-        }
-
-        // Contact Form Interactivity
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            const feedback = document.getElementById('formFeedback');
-            const form = document.getElementById('contactForm');
-            
-            // Display confirmation feedback
-            feedback.style.display = 'block';
-            form.reset();
         }
     </script>
 </body>
