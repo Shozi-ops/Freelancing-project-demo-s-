@@ -60,6 +60,7 @@ body::before{
 button{font-family:inherit}
 .mono{font-family:var(--font-mono)}
 
+a.btn,a.nav-link{text-decoration:none}
 /* ============ HEADER ============ */
 header{
   position:sticky;top:0;z-index:100;
@@ -242,6 +243,7 @@ footer{background:#080D18;border-top:1px solid var(--line-soft);padding:2rem;mar
     <nav class="main-nav" id="mainNav">
       <button class="nav-link active" data-nav="home">Home</button>
       <button class="nav-link" data-nav="services">Services</button>
+      <a class="nav-link" href="invoices.html">Prices &amp; invoices</a>
       <button class="nav-link" data-nav="about">About</button>
       <button class="nav-link" data-nav="contact">Contact</button>
     </nav>
@@ -264,6 +266,7 @@ footer{background:#080D18;border-top:1px solid var(--line-soft);padding:2rem;mar
       <div class="hero-ctas">
         <button class="btn btn-primary" data-nav="contact">Initiate Consultation</button>
         <button class="btn btn-ghost" data-nav="services">Services</button>
+        <a class="btn btn-ghost" href="invoices.html">View prices &amp; payment plans</a>
       </div>
     </div>
     <div class="spec-panel brk" aria-hidden="true">
@@ -333,6 +336,7 @@ footer{background:#080D18;border-top:1px solid var(--line-soft);padding:2rem;mar
     <span class="sec-eyebrow">// 02</span>
     <h2 class="sec-title"><span class="mask"><span class="mask-inner">Service Catalog</span></span></h2>
     <p class="sec-desc">Filter services by technical domain to view deliverable frameworks.</p>
+    <p class="sec-desc"><a href="invoices.html" style="color:var(--teal)">View web development and hosting prices, choose a payment plan, and prepare your invoice &rarr;</a> For other technical services, request a tailored quote.</p>
   </div>
 
   <div class="pills" id="filterPills">
@@ -426,7 +430,7 @@ footer{background:#080D18;border-top:1px solid var(--line-soft);padding:2rem;mar
 <footer>
   <div class="footer-content">
     <div>&copy; 2026 Technical Services Practice. All Rights Reserved.</div>
-    <div>Secure Infrastructure | Private AI | Web Engineering</div>
+    <div>Secure Infrastructure | Private AI | Web Engineering<br><a href="invoices.html" style="color:var(--teal)">Prices &amp; invoices</a></div>
   </div>
 </footer>
 
@@ -592,3 +596,4 @@ document.addEventListener('DOMContentLoaded', function(){
 </script>
 </body>
 </html>
+
