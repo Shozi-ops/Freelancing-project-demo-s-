@@ -23,13 +23,13 @@ For Vercel, the included configuration runs `npm run build` and serves `dist`. F
 
 ## Advisory control center
 
-The homepage links to `advisory.html`. Set `portalUrl` in `advisory-config.js` to the deployed HTTPS Advisory **frontend** URL. No destination is guessed: until configured, the page displays an explicit unavailable state. The portal opens in a separate tab to support its authentication flow without third-party iframe storage.
+The homepage links to `advisory.html`. The configured Advisory frontend is https://frontend-nine-beta-30.vercel.app and its API is https://advisory-api.vercel.app. The portal opens in a separate tab to support its authentication flow without third-party iframe storage. The production frontend proxies `/backend` to the API and uses Supabase sign-in.
 
 Sign in and select the appropriate workspace/project inside the Advisory App. Register Omni Digital Solutions as its own project; do not reuse Zoey's project ID or credentials. No tenant credentials belong in this static repository.
 
 On the separate Advisory API deployment, append `https://shozi-ops.github.io` to `ALLOWED_ORIGINS`, retaining existing frontend origins. Origins contain no repository path or trailing slash. A companion backend change adds the origin to the default and example configuration. An existing environment override must also be updated and redeployed. Direct browser API calls still require the authenticated bearer token and `X-Project-ID`; CORS does not grant workspace access.
 
-If the Advisory frontend uses `/backend`, set its server-side `API_BACKEND_URL` to the deployed API. GitHub Pages cannot provide that proxy. Live Advisory access and CORS remain unverified until the deployed URLs and environment are available.
+The Advisory frontend's server-side `API_BACKEND_URL` points to the public production API alias; protected preview/team aliases are not proxy destinations. GitHub Pages cannot provide that proxy. The API's production `ALLOWED_ORIGINS` includes `https://shozi-ops.github.io`. Hosted AI inference is not configured; the existing local Ollama endpoint cannot be reached from Vercel.
 
 ## Existing invoice records
 
