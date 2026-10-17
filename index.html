@@ -3,597 +3,817 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Architectural Tech & Digital Solutions | Freelance Services</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%230F172A'/%3E%3Ctext x='32' y='42' font-size='24' font-family='monospace' fill='%232DD4BF' text-anchor='middle'%3E%26lt;/%26gt;%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk/500.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk/700.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter/400.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter/500.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter/600.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono/400.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono/600.css">
+<title>Omni Digital Solutions — Web, Design, Content, Ops, Strategy &amp; PMO</title>
+<meta name="description" content="One point of contact for web development, graphic design, content writing, virtual assistance, consulting, project management, and specialized digital solutions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   DESIGN SYSTEM
-   ============================================================ */
-:root{
-  --bg:#0B1120;
-  --bg2:#0F172A;
-  --panel:#111B2E;
-  --line:#22304A;
-  --line-soft:#1A2740;
-  --teal:#2DD4BF;
-  --teal-deep:#14B8A6;
-  --blue:#3B82F6;
-  --amber:#F59E0B;
-  --red:#F87171;
-  --text:#E8EEF7;
-  --muted:#8CA0BC;
-  --dim:#5A6B85;
-  --font-display:'Space Grotesk',system-ui,sans-serif;
-  --font-body:'Inter',system-ui,sans-serif;
-  --font-mono:'JetBrains Mono',ui-monospace,monospace;
-  --ease:cubic-bezier(.22,.75,.25,1);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  background:var(--bg);color:var(--text);
-  font-family:var(--font-body);line-height:1.65;
-  min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden;
-}
-/* blueprint grid + glows */
-body::before{
-  content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:
-    radial-gradient(900px 480px at 85% -10%, rgba(59,130,246,.10), transparent 60%),
-    radial-gradient(700px 420px at -10% 30%, rgba(45,212,191,.07), transparent 60%),
-    linear-gradient(rgba(45,212,191,.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(45,212,191,.035) 1px, transparent 1px);
-  background-size:auto,auto,48px 48px,48px 48px;
-}
-.noise{
-  position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
-}
-::selection{background:rgba(45,212,191,.35);color:#fff}
-button{font-family:inherit}
-.mono{font-family:var(--font-mono)}
+  :root{
+    --ink:#11161c;
+    --ink-2:#161d25;
+    --panel:#1a222b;
+    --line: rgba(237,239,242,0.10);
+    --line-strong: rgba(237,239,242,0.18);
+    --text:#EDEFF2;
+    --text-dim:#9BA6B2;
+    --amber:#E8A33D;
+    --amber-dim: rgba(232,163,61,0.14);
+    --teal:#5FA39B;
+    --radius: 6px;
+    --maxw: 1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--text);
+    font-family:'Inter', -apple-system, sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--amber);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:6px;height:6px;
+    background:var(--amber);
+    border-radius:50%;
+    display:inline-block;
+  }
+  :focus-visible{
+    outline:2px solid var(--amber);
+    outline-offset:3px;
+  }
 
-a.btn,a.nav-link{text-decoration:none}
-/* ============ HEADER ============ */
-header{
-  position:sticky;top:0;z-index:100;
-  background:rgba(11,17,32,.88);backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--line-soft);
-  transition:box-shadow .3s var(--ease);
-}
-header.scrolled{box-shadow:0 10px 30px rgba(0,0,0,.45)}
-.nav-container{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 2rem}
-.brand{display:flex;align-items:center;gap:.65rem;cursor:pointer;background:none;border:none;color:var(--text)}
-.brand-glyph{font-family:var(--font-mono);font-weight:600;color:var(--teal);background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.35);border-radius:6px;padding:.15rem .45rem;font-size:.95rem}
-.brand-text{font-family:var(--font-display);font-weight:700;letter-spacing:.02em;font-size:1.08rem}
-.main-nav{display:flex;gap:.25rem}
-.nav-link{background:none;border:none;color:var(--muted);font-size:.9rem;font-weight:600;cursor:pointer;padding:.5rem .8rem;border-radius:6px;position:relative;transition:color .2s}
-.nav-link::after{content:'';position:absolute;left:.8rem;right:.8rem;bottom:.25rem;height:2px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
-.nav-link:hover{color:var(--text)}
-.nav-link.active{color:var(--teal)}
-.nav-link.active::after{transform:scaleX(1)}
-.hamburger{display:none;background:none;border:1px solid var(--line);border-radius:6px;width:40px;height:38px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px}
-.hamburger span{display:block;width:18px;height:2px;background:var(--teal);transition:transform .3s,opacity .3s}
-.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.hamburger.open span:nth-child(2){opacity:0}
-.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  /* ===== Header ===== */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:rgba(17,22,28,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 0;
+  }
+  .logo{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:1.05rem;
+    text-decoration:none;
+    display:flex; align-items:center; gap:10px;
+  }
+  .logo .mark{
+    width:26px; height:26px;
+    border:1.5px solid var(--amber);
+    border-radius:4px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    color:var(--amber);
+    transform:rotate(0deg);
+  }
+  nav.primary ul{
+    list-style:none; display:flex; gap:28px; margin:0; padding:0;
+  }
+  nav.primary a{
+    text-decoration:none;
+    font-size:0.88rem;
+    color:var(--text-dim);
+    transition:color .15s ease;
+  }
+  nav.primary a:hover{color:var(--text);}
+  .nav-cta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--ink);
+    background:var(--amber);
+    padding:9px 16px;
+    border-radius:4px;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  .menu-toggle{display:none;}
 
-/* ============ LAYOUT ============ */
-main{flex:1;width:100%;max-width:1200px;margin:0 auto;padding:2.5rem 2rem 4rem}
-.page{display:none}
-.page.active{display:block;animation:pageIn .45s var(--ease)}
-@keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  /* ===== Hero ===== */
+  .hero{
+    padding:96px 0 64px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap:56px;
+    align-items:start;
+  }
+  .hero h1{
+    font-size:clamp(2.2rem, 4.2vw, 3.4rem);
+    line-height:1.06;
+    margin:18px 0 22px;
+  }
+  .hero h1 .accent{color:var(--amber);}
+  .hero p.lede{
+    font-size:1.08rem;
+    color:var(--text-dim);
+    max-width:46ch;
+    margin:0 0 30px;
+  }
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    padding:13px 22px;
+    border-radius:4px;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn-primary{background:var(--amber); color:var(--ink); border:1px solid var(--amber);}
+  .btn-primary:hover{transform:translateY(-1px);}
+  .btn-ghost{background:transparent; color:var(--text); border:1px solid var(--line-strong);}
+  .btn-ghost:hover{border-color:var(--amber); color:var(--amber);}
 
-.sec-head{margin-bottom:2rem}
-.sec-eyebrow{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.22em;color:var(--amber);text-transform:uppercase;display:block;margin-bottom:.6rem}
-.sec-title{font-family:var(--font-display);font-weight:700;font-size:clamp(1.6rem,3.4vw,2.4rem);line-height:1.15;letter-spacing:-.01em}
-.sec-desc{color:var(--muted);max-width:640px;margin-top:.75rem}
-.mask{display:block;overflow:hidden}
-.mask-inner{display:block;transform:translateY(110%);transition:transform .9s var(--ease)}
-.in .mask-inner{transform:none}
+  /* Console panel — signature element */
+  .console{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:8px;
+    overflow:hidden;
+  }
+  .console-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:12px 16px;
+    border-bottom:1px solid var(--line);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    color:var(--text-dim);
+    letter-spacing:0.06em;
+  }
+  .console-dots{display:flex; gap:6px;}
+  .console-dots span{width:7px;height:7px;border-radius:50%; background:var(--line-strong);}
+  .console-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 16px;
+    border-bottom:1px solid var(--line);
+    font-size:0.88rem;
+  }
+  .console-row:last-child{border-bottom:none;}
+  .console-row .id{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--amber);
+    width:64px;
+    flex-shrink:0;
+  }
+  .console-row .label{flex:1; color:var(--text);}
+  .console-row .status{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    color:var(--teal);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+  }
 
-.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d,0s)}
-.reveal.in{opacity:1;transform:none}
+  /* ===== Section shell ===== */
+  section{padding:88px 0;}
+  section.tight{padding:64px 0;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap:24px; margin-bottom:46px; flex-wrap:wrap;
+    border-bottom:1px solid var(--line);
+    padding-bottom:28px;
+  }
+  .section-head h2{font-size:clamp(1.6rem, 3vw, 2.2rem);}
+  .section-head p{color:var(--text-dim); max-width:42ch; margin:10px 0 0;}
 
-.btn{display:inline-flex;align-items:center;gap:.55rem;font-weight:700;font-size:.92rem;padding:.85rem 1.6rem;border-radius:6px;border:1px solid transparent;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s,color .2s}
-.btn-primary{background:var(--teal);color:#06251F}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(45,212,191,.35)}
-.btn-ghost{background:transparent;border-color:var(--line);color:var(--text)}
-.btn-ghost:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px)}
+  /* ===== Services (modules) ===== */
+  .services{border-bottom:1px solid var(--line); background:var(--ink-2);}
+  .module-list{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:8px;
+    overflow:hidden;
+  }
+  .module{
+    background:var(--panel);
+    padding:30px 28px;
+  }
+  .module-top{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:16px;
+  }
+  .module-id{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--amber);
+    background:var(--amber-dim);
+    padding:4px 8px;
+    border-radius:4px;
+  }
+  .module h3{font-size:1.15rem; margin-bottom:10px;}
+  .module p{color:var(--text-dim); font-size:0.92rem; margin:0 0 16px;}
+  .module ul{
+    list-style:none; margin:0; padding:0;
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .module ul li{
+    font-size:0.85rem;
+    color:var(--text);
+    padding-left:16px;
+    position:relative;
+  }
+  .module ul li::before{
+    content:"→";
+    position:absolute; left:0;
+    color:var(--teal);
+    font-size:0.8rem;
+  }
 
-.brk{position:relative}
-.brk::before,.brk::after{content:'';position:absolute;width:16px;height:16px;pointer-events:none;z-index:1}
-.brk::before{top:-1px;left:-1px;border-top:2px solid var(--teal);border-left:2px solid var(--teal)}
-.brk::after{bottom:-1px;right:-1px;border-bottom:2px solid var(--teal);border-right:2px solid var(--teal)}
+  /* ===== Process ===== */
+  .process-row{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:0;
+    border:1px solid var(--line);
+    border-radius:8px;
+    overflow:hidden;
+  }
+  .process-step{
+    padding:26px 22px;
+    border-right:1px solid var(--line);
+  }
+  .process-step:last-child{border-right:none;}
+  .process-step .num{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--amber);
+    font-size:0.78rem;
+    display:block;
+    margin-bottom:14px;
+  }
+  .process-step h4{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:1rem;
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .process-step p{color:var(--text-dim); font-size:0.86rem; margin:0;}
 
-/* ============ HERO ============ */
-.hero{position:relative;display:grid;grid-template-columns:1.08fr .92fr;gap:3rem;align-items:center;padding:2.5rem 0 3.5rem}
-.hero-mark{position:absolute;font-family:var(--font-mono);color:var(--dim);font-size:.8rem;user-select:none}
-.hm-tl{top:0;left:0}.hm-tr{top:0;right:0}.hm-bl{bottom:0;left:0}.hm-br{bottom:0;right:0}
-.hero-eyebrow{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.22em;color:var(--teal);text-transform:uppercase;display:inline-flex;align-items:center;gap:.6rem;border:1px solid rgba(45,212,191,.3);background:rgba(45,212,191,.06);border-radius:999px;padding:.4rem .95rem;margin-bottom:1.5rem}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 0 rgba(45,212,191,.5);animation:pulse 2s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(45,212,191,.45)}70%{box-shadow:0 0 0 8px rgba(45,212,191,0)}100%{box-shadow:0 0 0 0 rgba(45,212,191,0)}}
-.hero h1{font-family:var(--font-display);font-weight:700;font-size:clamp(2.2rem,4.8vw,3.5rem);line-height:1.06;letter-spacing:-.02em;margin-bottom:1.4rem}
-.hero h1 .line{display:block;min-height:1.06em}
-.hero h1 .accent{color:var(--teal)}
-.hero-sub{color:var(--muted);font-size:1.05rem;max-width:540px;margin-bottom:2rem}
-.hero-ctas{display:flex;gap:.9rem;flex-wrap:wrap}
+  /* ===== Portfolio ===== */
+  .work-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:24px;
+  }
+  .work-card{
+    border:1px solid var(--line);
+    border-radius:8px;
+    overflow:hidden;
+    background:var(--panel);
+    transition:border-color .15s ease;
+  }
+  .work-card:hover{border-color:var(--line-strong);}
+  .work-thumb{
+    height:190px;
+    background:
+      linear-gradient(135deg, rgba(232,163,61,0.14), rgba(95,163,155,0.10)),
+      repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(237,239,242,0.03) 12px, rgba(237,239,242,0.03) 24px);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--text-dim);
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    border-bottom:1px solid var(--line);
+  }
+  .work-body{padding:22px;}
+  .work-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    color:var(--teal);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+  }
+  .work-body h3{font-size:1.05rem; margin:10px 0 8px;}
+  .work-body p{color:var(--text-dim); font-size:0.88rem; margin:0;}
 
-/* spec panel (right of hero) */
-.spec-panel{background:#0A101E;border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.5)}
-.spec-bar{display:flex;align-items:center;gap:.45rem;padding:.65rem .9rem;background:var(--panel);border-bottom:1px solid var(--line)}
-.tdot{width:10px;height:10px;border-radius:50%}
-.tdot.r{background:#F87171}.tdot.y{background:#F59E0B}.tdot.g{background:#34D399}
-.spec-title{margin-left:.5rem;font-family:var(--font-mono);font-size:.66rem;color:var(--dim);letter-spacing:.18em;text-transform:uppercase}
-.spec-body{padding:1.3rem 1.4rem}
-.spec-item{padding:.95rem 0;border-bottom:1px dashed var(--line)}
-.spec-item:first-child{padding-top:.1rem}
-.spec-item:last-of-type{border-bottom:none}
-.spec-row{display:flex;align-items:baseline;gap:.8rem;margin-bottom:.3rem}
-.spec-idx{font-family:var(--font-mono);font-size:.68rem;color:var(--amber)}
-.spec-tag{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;margin-left:auto}
-.spec-item h3{font-family:var(--font-display);font-size:1rem;color:var(--text)}
-.spec-item p{color:var(--muted);font-size:.83rem;margin-top:.35rem}
-.spec-cursor{font-family:var(--font-mono);color:var(--teal);font-size:.8rem;padding-top:.9rem}
-.cursor{display:inline-block;width:8px;height:14px;background:var(--teal);vertical-align:-2px;animation:blink 1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
+  /* ===== About ===== */
+  .about{border-top:1px solid var(--line); background:var(--ink-2);}
+  .about-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:56px;
+    align-items:center;
+  }
+  .about p{color:var(--text-dim); font-size:1rem; margin:0 0 16px;}
+  .stat-row{display:flex; gap:36px; margin-top:26px; flex-wrap:wrap;}
+  .stat b{
+    display:block;
+    font-family:'Space Grotesk', sans-serif;
+    font-size:1.7rem;
+    color:var(--amber);
+  }
+  .stat span{font-size:0.8rem; color:var(--text-dim);}
 
-/* ============ TICKER ============ */
-.ticker{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);overflow:hidden;padding:.8rem 0;margin-bottom:3.5rem;background:rgba(17,27,46,.4)}
-.ticker-track{display:flex;gap:2.8rem;width:max-content;animation:ticker 32s linear infinite}
-.ticker:hover .ticker-track{animation-play-state:paused}
-.ticker-track span{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.22em;color:var(--dim);white-space:nowrap;text-transform:uppercase}
-.ticker-track span i{font-style:normal;color:var(--teal);margin-right:2.8rem}
-@keyframes ticker{to{transform:translateX(-50%)}}
+  /* ===== Contact ===== */
+  .contact-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:56px;
+  }
+  .contact-info p{color:var(--text-dim); max-width:40ch;}
+  .contact-list{list-style:none; margin:26px 0 0; padding:0; display:flex; flex-direction:column; gap:14px;}
+  .contact-list li{font-size:0.92rem;}
+  .contact-list .k{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    color:var(--amber);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    display:block;
+    margin-bottom:4px;
+  }
+  form.console{padding:26px;}
+  .field{margin-bottom:18px;}
+  .field label{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--text-dim);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    margin-bottom:8px;
+  }
+  .field input, .field select, .field textarea{
+    width:100%;
+    background:var(--ink);
+    border:1px solid var(--line-strong);
+    border-radius:4px;
+    color:var(--text);
+    padding:12px 14px;
+    font-family:'Inter', sans-serif;
+    font-size:0.92rem;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:none;
+    border-color:var(--amber);
+  }
+  .field textarea{resize:vertical; min-height:110px;}
+  .submit-btn{
+    width:100%;
+    border:none;
+    cursor:pointer;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    background:var(--amber);
+    color:var(--ink);
+    padding:14px 20px;
+    border-radius:4px;
+  }
+  .form-note{font-size:0.78rem; color:var(--text-dim); margin-top:12px;}
 
-/* ============ CARDS ============ */
-.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.4rem}
-.card{background:linear-gradient(180deg,var(--panel),rgba(17,27,46,.55));border:1px solid var(--line);border-radius:10px;padding:1.7rem;position:relative;display:flex;flex-direction:column;transition:transform .3s var(--ease),border-color .3s}
-.card:hover{transform:translateY(-5px);border-color:rgba(45,212,191,.45)}
-.card-tag{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber)}
-.card h3{font-family:var(--font-display);font-size:1.25rem;margin:.55rem 0 .6rem}
-.card p{color:var(--muted);font-size:.92rem}
-.card-idx{position:absolute;top:1.4rem;right:1.4rem;font-family:var(--font-mono);font-size:.7rem;color:var(--dim)}
-.area-icon{width:42px;height:42px;border-radius:8px;background:rgba(45,212,191,.08);border:1px solid rgba(45,212,191,.3);display:grid;place-items:center;margin-bottom:1.1rem;color:var(--teal)}
-.area-link{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.3rem;font-weight:600;font-size:.88rem;color:var(--teal);background:none;border:none;cursor:pointer;transition:gap .25s var(--ease),color .2s;text-align:left}
-.area-link:hover{color:var(--text);gap:.7rem}
 
-/* service cards */
-.deliverables{list-style:none;margin:1.1rem 0 1.4rem;border-top:1px dashed var(--line);padding-top:.95rem}
-.deliverables li{font-size:.87rem;color:var(--muted);margin-bottom:.45rem;display:flex;gap:.55rem;align-items:baseline}
-.deliverables li::before{content:'✓';color:var(--teal);font-family:var(--font-mono);font-weight:600}
-.svc-btn{width:100%;justify-content:center;margin-top:auto}
+  .console-row .status::before{content:"";display:inline-block;width:6px;height:6px;margin-right:6px;border-radius:50%;background:var(--teal);}
+  .advisory-card{padding:28px;}
+  .advisory-card p{color:var(--text-dim);max-width:65ch;}
+  .nav-row{flex-wrap:wrap;}
+  @media(max-width:880px){nav.primary.is-open{display:block;order:4;width:100%;}nav.primary.is-open ul{flex-wrap:wrap;gap:16px;padding:14px 0;}}
+  @media(max-width:520px){.logo{font-size:0.95rem;}.nav-row{gap:12px;}.nav-cta{margin-left:auto;}.console-row{gap:8px;padding:14px 12px;}.console-row .label{font-size:0.78rem;}.console-row .status{font-size:0.6rem;}}
+  /* ===== Footer ===== */
+  footer{
+    border-top:1px solid var(--line);
+    padding:40px 0;
+  }
+  .footer-row{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:16px;
+  }
+  .footer-row .mono{font-size:0.78rem; color:var(--text-dim);}
+  .footer-links{list-style:none; display:flex; gap:22px; margin:0; padding:0;}
+  .footer-links a{font-size:0.82rem; color:var(--text-dim); text-decoration:none;}
+  .footer-links a:hover{color:var(--amber);}
 
-/* filter pills */
-.pills{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
-.pill{background:var(--panel);border:1px solid var(--line);color:var(--muted);padding:.45rem 1.1rem;border-radius:999px;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .25s}
-.pill .cnt{font-family:var(--font-mono);font-size:.66rem;color:var(--dim);margin-left:.35rem}
-.pill:hover{border-color:var(--teal);color:var(--text)}
-.pill.active{background:var(--teal);border-color:var(--teal);color:#06251F}
-.pill.active .cnt{color:#06251F}
-#serviceGrid{transition:opacity .2s ease}
-#serviceGrid.fading{opacity:0}
-
-/* ============ ABOUT ============ */
-.principles{background:linear-gradient(180deg,var(--panel),rgba(17,27,46,.55));border:1px solid var(--line);border-radius:10px;padding:2.2rem;margin-bottom:3rem}
-.principles h3{font-family:var(--font-display);color:var(--teal);font-size:1.25rem;margin-bottom:1rem}
-.principles p{color:var(--muted);margin-bottom:1rem;max-width:820px}
-.principles p:last-child{margin-bottom:0}
-.matrix-card{border-top:2px solid var(--teal)}
-.matrix-card h3{font-size:1.05rem;line-height:1.45;margin-top:.8rem}
-
-/* ============ CONTACT ============ */
-.form-wrap{max-width:680px;margin:0 auto}
-.form-card{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:2.2rem}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
-.form-group{margin-bottom:1.2rem}
-.form-group label{display:block;font-size:.85rem;font-weight:600;margin-bottom:.4rem;color:var(--text)}
-.form-group label i{font-style:normal;color:var(--teal);font-family:var(--font-mono);font-size:.72rem;margin-right:.25rem}
-.form-control{width:100%;padding:.78rem .9rem;background:var(--bg2);border:1px solid var(--line);border-radius:6px;color:var(--text);font-family:var(--font-body);font-size:.9rem;transition:border-color .2s,box-shadow .2s}
-.form-control:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(45,212,191,.12)}
-textarea.form-control{resize:vertical;min-height:130px}
-.form-success{display:none;margin-top:1.2rem;padding:1rem 1.2rem;border:1px solid var(--teal);background:rgba(45,212,191,.08);border-radius:6px;color:var(--teal);font-size:.9rem}
-.form-success.show{display:block;animation:pageIn .4s var(--ease)}
-
-/* ============ FOOTER ============ */
-footer{background:#080D18;border-top:1px solid var(--line-soft);padding:2rem;margin-top:auto}
-.footer-content{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;color:var(--muted);font-size:.85rem}
-
-/* ============ RESPONSIVE ============ */
-@media (max-width:1024px){
-  .hero{grid-template-columns:1fr;gap:2.2rem}
-}
-@media (max-width:768px){
-  .nav-container{padding:.8rem 1.2rem}
-  .hamburger{display:flex}
-  .main-nav{position:absolute;top:100%;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--line);flex-direction:column;padding:1rem 1.4rem;display:none}
-  .main-nav.open{display:flex}
-  .nav-link{padding:.8rem .4rem;text-align:left}
-  main{padding:2rem 1.2rem 3rem}
-  .form-row{grid-template-columns:1fr}
-  .footer-content{flex-direction:column;text-align:center}
-}
-/* ============ REDUCED MOTION ============ */
-@media (prefers-reduced-motion: reduce){
-  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
-  .ticker-track{animation:none;width:auto;flex-wrap:wrap}
-  .reveal{opacity:1;transform:none}
-  .mask-inner{transform:none}
-}
+  @media (max-width: 880px){
+    nav.primary{display:none;}
+    .menu-toggle{
+      display:inline-flex; background:none; border:1px solid var(--line-strong);
+      color:var(--text); padding:8px 12px; border-radius:4px; font-family:'IBM Plex Mono', monospace;
+      font-size:0.78rem; cursor:pointer;
+    }
+    .hero-grid, .about-grid, .contact-grid{grid-template-columns:1fr;}
+    .module-list{grid-template-columns:1fr;}
+    .process-row{grid-template-columns:1fr 1fr;}
+    .process-step{border-right:none; border-bottom:1px solid var(--line);}
+    .work-grid{grid-template-columns:1fr;}
+    .stat-row{gap:24px;}
+  }
+  @media (max-width: 520px){
+    .process-row{grid-template-columns:1fr;}
+    .hero{padding:72px 0 48px;}
+    section{padding:64px 0;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
 </style>
 </head>
 <body>
-<div class="noise"></div>
 
-<!-- ================= HEADER ================= -->
-<header id="siteHeader">
-  <div class="nav-container">
-    <button class="brand" data-nav="home" aria-label="Home">
-      <span class="brand-glyph">&lt;/&gt;</span>
-      <span class="brand-text">Digital Solutions</span>
-    </button>
-    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-    <nav class="main-nav" id="mainNav">
-      <button class="nav-link active" data-nav="home">Home</button>
-      <button class="nav-link" data-nav="services">Services</button>
-      <a class="nav-link" href="invoices.html">Prices &amp; invoices</a>
-      <button class="nav-link" data-nav="about">About</button>
-      <button class="nav-link" data-nav="contact">Contact</button>
+<header class="site">
+  <div class="wrap nav-row">
+    <a href="#top" class="logo">
+      <span class="mark">O</span>
+      Omni Digital Solutions
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">Menu</button>
+    <nav class="primary" id="primary-navigation" aria-label="Main navigation">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="invoices.html">Prices &amp; invoices</a></li>
+        <li><a href="#advisory">Advisory</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
+    <a href="#contact" class="nav-cta">Start a project</a>
   </div>
 </header>
 
-<main>
-<!-- ================= HOME ================= -->
-<section id="home" class="page active">
-  <div class="hero">
-    <span class="hero-mark hm-tl">+</span><span class="hero-mark hm-tr">+</span>
-    <span class="hero-mark hm-bl">+</span><span class="hero-mark hm-br">+</span>
-    <div>
-      <span class="hero-eyebrow"><span class="dot"></span>ARCHITECTURAL TECH &amp; DIGITAL SOLUTIONS</span>
-      <h1>
-        <span class="line" data-scramble>Technical Engineering &amp;</span>
-        <span class="line accent" data-scramble>Digital Solutions</span>
-      </h1>
-      <p class="hero-sub">Delivering secure, scalable web infrastructure, private local AI deployments, and specialized technical reconnaissance for modern organizations.</p>
-      <div class="hero-ctas">
-        <button class="btn btn-primary" data-nav="contact">Initiate Consultation</button>
-        <button class="btn btn-ghost" data-nav="services">Services</button>
-        <a class="btn btn-ghost" href="invoices.html">View prices &amp; payment plans</a>
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">One contact, six disciplines</p>
+        <h1>Everything your project needs, run from <span class="accent">one desk.</span></h1>
+        <p class="lede">Omni Digital Solutions covers web development, design, content, day-to-day operations, strategy, and project management — so you brief once and stop chasing five different people.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Get a free consultation</a>
+          <a href="#work" class="btn btn-ghost">See recent work</a>
+        </div>
+      </div>
+
+      <div class="console" aria-label="Service capability overview">
+        <div class="console-head">
+          <span>ACTIVE CAPABILITIES</span>
+          <div class="console-dots"><span></span><span></span><span></span></div>
+        </div>
+        <div class="console-row">
+          <span class="id">WEB·01</span>
+          <span class="label">Web development</span>
+          <span class="status">Available</span>
+        </div>
+        <div class="console-row">
+          <span class="id">DES·02</span>
+          <span class="label">Graphic design &amp; branding</span>
+          <span class="status">Available</span>
+        </div>
+        <div class="console-row">
+          <span class="id">CON·03</span>
+          <span class="label">Content writing</span>
+          <span class="status">Available</span>
+        </div>
+        <div class="console-row">
+          <span class="id">OPS·04</span>
+          <span class="label">Virtual assistance</span>
+          <span class="status">Available</span>
+        </div>
+        <div class="console-row">
+          <span class="id">STR·05</span>
+          <span class="label">Consulting &amp; strategy</span>
+          <span class="status">Available</span>
+        </div>
+        <div class="console-row">
+          <span class="id">PMO·06</span>
+          <span class="label">Project management</span>
+          <span class="status">Available</span>
+        </div>
       </div>
     </div>
-    <div class="spec-panel brk" aria-hidden="true">
-      <div class="spec-bar">
-        <span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span>
-        <span class="spec-title">Core Practice Areas</span>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">What I do</p>
+          <h2>Six disciplines, one accountable person</h2>
+        </div>
+        <p>Every module below can run on its own, or combine into a single managed engagement.</p>
       </div>
-      <div class="spec-body">
-        <div class="spec-item">
-          <div class="spec-row"><span class="spec-idx">01</span><h3>Web Development</h3><span class="spec-tag">Engineering</span></div>
-          <p>Full-stack Django applications, custom database design, and authenticated DNS infrastructure.</p>
+
+      <div class="module-list">
+        <div class="module">
+          <div class="module-top">
+            <h3>Web Development</h3>
+            <span class="module-id">WEB·01</span>
+          </div>
+          <p>Fast, responsive sites and web apps built for real usage, not just a pretty first screenshot.</p>
+          <ul>
+            <li>Responsive, mobile-first builds</li>
+            <li>React, Vue, and static-site frameworks</li>
+            <li>Performance and accessibility (WCAG) passes</li>
+            <li>Ongoing maintenance and fixes</li>
+          </ul>
         </div>
-        <div class="spec-item">
-          <div class="spec-row"><span class="spec-idx">02</span><h3>Local AI Deployment</h3><span class="spec-tag">Specialization</span></div>
-          <p>Private, zero-cloud open-weight LLM setups (Ollama, LM Studio) tailored to enterprise hardware.</p>
+
+        <div class="module">
+          <div class="module-top">
+            <h3>Graphic Design &amp; Branding</h3>
+            <span class="module-id">DES·02</span>
+          </div>
+          <p>Visual identity that stays consistent from your logo to your last social post.</p>
+          <ul>
+            <li>Logo and visual identity systems</li>
+            <li>Marketing collateral &amp; social graphics</li>
+            <li>Packaging and print-ready design</li>
+            <li>Brand guideline documents</li>
+          </ul>
         </div>
-        <div class="spec-item">
-          <div class="spec-row"><span class="spec-idx">03</span><h3>OSINT Reconnaissance</h3><span class="spec-tag">Security</span></div>
-          <p>Surface-level threat mapping, external asset auditing, and email authentication security checks.</p>
+
+        <div class="module">
+          <div class="module-top">
+            <h3>Content Writing</h3>
+            <span class="module-id">CON·03</span>
+          </div>
+          <p>Words that are written for the people actually reading them — and for search engines besides.</p>
+          <ul>
+            <li>SEO-aware blog posts &amp; articles</li>
+            <li>Website and landing page copy</li>
+            <li>Email sequences &amp; newsletters</li>
+            <li>Editing and proofreading passes</li>
+          </ul>
         </div>
-        <div class="spec-cursor">&gt; <span class="cursor"></span></div>
+
+        <div class="module">
+          <div class="module-top">
+            <h3>Virtual Assistance</h3>
+            <span class="module-id">OPS·04</span>
+          </div>
+          <p>The recurring admin work that eats a founder's week, handled reliably in the background.</p>
+          <ul>
+            <li>Inbox &amp; calendar management</li>
+            <li>Meeting scheduling &amp; follow-ups</li>
+            <li>Data entry and document prep</li>
+            <li>Recurring reporting</li>
+          </ul>
+        </div>
+
+        <div class="module">
+          <div class="module-top">
+            <h3>Consulting</h3>
+            <span class="module-id">STR·05</span>
+          </div>
+          <p>Outside judgment on the decisions that are hard to see clearly from inside the business.</p>
+          <ul>
+            <li>Market &amp; competitor research</li>
+            <li>Go-to-market and pricing input</li>
+            <li>Process and workflow review</li>
+            <li>Growth-focused recommendations</li>
+          </ul>
+        </div>
+
+        <div class="module">
+          <div class="module-top">
+            <h3>Project Management</h3>
+            <span class="module-id">PMO·06</span>
+          </div>
+          <p>One person tracking scope, timeline, and budget so nothing falls between the cracks.</p>
+          <ul>
+            <li>Timeline &amp; milestone planning</li>
+            <li>Vendor and contractor coordination</li>
+            <li>Status reporting to stakeholders</li>
+            <li>Risk and scope tracking</li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track" id="tickerTrack">
-      <span>Python <i>✦</i></span><span>Django <i>✦</i></span><span>HTML5/CSS3 <i>✦</i></span><span>JavaScript <i>✦</i></span><span>SQL <i>✦</i></span><span>Ollama <i>✦</i></span><span>LM Studio <i>✦</i></span><span>Quantized GGUF Models <i>✦</i></span><span>SpiderFoot <i>✦</i></span><span>Maltego <i>✦</i></span><span>DNSSEC Verification <i>✦</i></span>
-    </div>
-  </div>
-
-  <div class="sec-head reveal">
-    <span class="sec-eyebrow">// 01</span>
-    <h2 class="sec-title"><span class="mask"><span class="mask-inner">Core Practice Areas</span></span></h2>
-  </div>
-  <div class="grid-3">
-    <div class="card reveal" style="--d:.05s">
-      <span class="card-idx">A.01</span>
-      <div class="area-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13 5l-2 14"/></svg></div>
-      <div class="card-tag">Engineering</div>
-      <h3>Web Development</h3>
-      <p>Full-stack Django applications, custom database design, and authenticated DNS infrastructure.</p>
-      <button class="area-link" data-explore="dev">Explore Web Services &rarr;</button>
-    </div>
-    <div class="card reveal" style="--d:.12s">
-      <span class="card-idx">A.02</span>
-      <div class="area-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></div>
-      <div class="card-tag">Specialization</div>
-      <h3>Local AI Deployment</h3>
-      <p>Private, zero-cloud open-weight LLM setups (Ollama, LM Studio) tailored to enterprise hardware.</p>
-      <button class="area-link" data-explore="ai">Explore AI Orchestration &rarr;</button>
-    </div>
-    <div class="card reveal" style="--d:.19s">
-      <span class="card-idx">A.03</span>
-      <div class="area-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="2"/></svg></div>
-      <div class="card-tag">Security</div>
-      <h3>OSINT Reconnaissance</h3>
-      <p>Surface-level threat mapping, external asset auditing, and email authentication security checks.</p>
-      <button class="area-link" data-explore="sec">Explore Recon Services &rarr;</button>
-    </div>
-  </div>
-</section>
-
-<!-- ================= SERVICES ================= -->
-<section id="services" class="page">
-  <div class="sec-head">
-    <span class="sec-eyebrow">// 02</span>
-    <h2 class="sec-title"><span class="mask"><span class="mask-inner">Service Catalog</span></span></h2>
-    <p class="sec-desc">Filter services by technical domain to view deliverable frameworks.</p>
-    <p class="sec-desc"><a href="invoices.html" style="color:var(--teal)">View web development and hosting prices, choose a payment plan, and prepare your invoice &rarr;</a> For other technical services, request a tailored quote.</p>
-  </div>
-
-  <div class="pills" id="filterPills">
-    <button class="pill active" data-filter="all">All Services</button>
-    <button class="pill" data-filter="dev">Web &amp; Infrastructure</button>
-    <button class="pill" data-filter="ai">Local AI Orchestration</button>
-    <button class="pill" data-filter="sec">OSINT &amp; Auditing</button>
-    <button class="pill" data-filter="ecom">E-Commerce Architecture</button>
-  </div>
-
-  <div class="grid-3" id="serviceGrid"></div>
-</section>
-
-<!-- ================= ABOUT ================= -->
-<section id="about" class="page">
-  <div class="sec-head">
-    <span class="sec-eyebrow">// 03</span>
-    <h2 class="sec-title"><span class="mask"><span class="mask-inner">About The Practice</span></span></h2>
-  </div>
-
-  <div class="principles brk reveal">
-    <h3>Engineering Principles</h3>
-    <p>This technical practice focuses on delivering precise, decoupled, and secure software environments. By prioritizing self-hosted infrastructure, robust database structures, and objective threat assessments, systems remain under complete client control without unnecessary third-party dependencies.</p>
-    <p>Work is structured on a project basis or through dedicated retainer engagements, ensuring strict adherence to clear scope definitions and technical documentation.</p>
-  </div>
-
-  <div class="sec-head reveal">
-    <h2 class="sec-title" style="font-size:clamp(1.3rem,2.6vw,1.8rem)"><span class="mask"><span class="mask-inner">Technical Capability Matrix</span></span></h2>
-  </div>
-  <div class="grid-3">
-    <div class="card matrix-card reveal" style="--d:.05s">
-      <span class="card-idx">M.01</span>
-      <div class="card-tag">Languages &amp; Frameworks</div>
-      <h3>Python, Django, HTML5/CSS3, JavaScript, SQL</h3>
-    </div>
-    <div class="card matrix-card reveal" style="--d:.12s">
-      <span class="card-idx">M.02</span>
-      <div class="card-tag">AI &amp; Local Hardware</div>
-      <h3>Ollama, LM Studio, Quantized GGUF Models</h3>
-    </div>
-    <div class="card matrix-card reveal" style="--d:.19s">
-      <span class="card-idx">M.03</span>
-      <div class="card-tag">Reconnaissance &amp; Auditing</div>
-      <h3>SpiderFoot, Maltego, DNSSEC Verification</h3>
-    </div>
-  </div>
-</section>
-
-<!-- ================= CONTACT ================= -->
-<section id="contact" class="page">
-  <div class="sec-head" style="text-align:center">
-    <span class="sec-eyebrow">// 04</span>
-    <h2 class="sec-title"><span class="mask"><span class="mask-inner">Initiate a Project</span></span></h2>
-    <p class="sec-desc" style="margin-left:auto;margin-right:auto">Submit project parameters or technical service inquiries below.</p>
-  </div>
-
-  <div class="form-wrap reveal">
-    <div class="form-card brk">
-      <form id="contactForm">
-        <div class="form-group">
-          <label for="name"><i>01</i>Name or Organization</label>
-          <input type="text" id="name" class="form-control" required placeholder="e.g., Jane Doe / Company Ltd">
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">How it runs</p>
+          <h2>A short, predictable path from brief to delivery</h2>
         </div>
-        <div class="form-group">
-          <label for="email"><i>02</i>Email Address</label>
-          <input type="email" id="email" class="form-control" required placeholder="name@domain.com">
+        <p>No discovery calls that go nowhere — every step ends with something you can look at.</p>
+      </div>
+
+      <div class="process-row">
+        <div class="process-step">
+          <span class="num mono">01</span>
+          <h4>Brief</h4>
+          <p>You describe the problem and the outcome you need. I ask the questions that matter and confirm scope.</p>
         </div>
-        <div class="form-group">
-          <label for="service-type"><i>03</i>Primary Service Required</label>
-          <select id="service-type" class="form-control">
-            <option value="web">Web Development &amp; Architecture</option>
-            <option value="ai">Local AI Infrastructure</option>
-            <option value="sec">OSINT &amp; Security Auditing</option>
-            <option value="ecom">E-Commerce Setup</option>
-            <option value="other">General Technical Inquiry</option>
+        <div class="process-step">
+          <span class="num mono">02</span>
+          <h4>Plan</h4>
+          <p>You get a fixed timeline, a price, and a list of what's included — before any work starts.</p>
+        </div>
+        <div class="process-step">
+          <span class="num mono">03</span>
+          <h4>Build</h4>
+          <p>Work happens in short cycles with visible check-ins, not a single reveal at the end.</p>
+        </div>
+        <div class="process-step">
+          <span class="num mono">04</span>
+          <h4>Handover</h4>
+          <p>You get the finished asset, the source files, and a short walkthrough of how to use it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="services" id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Sample engagements</p>
+          <h2>A sample of project possibilities</h2>
+        </div>
+        <p>Illustrative engagements showing how the six modules work in practice.</p>
+      </div>
+
+      <div class="work-grid">
+        <div class="work-card">
+          <div class="work-thumb">Web · Bakery site</div>
+          <div class="work-body">
+            <span class="work-tag">Web development</span>
+            <h3>Responsive site for an independent bakery</h3>
+            <p>Rebuilt a slow, desktop-only site as a fast, mobile-first storefront with online ordering.</p>
+          </div>
+        </div>
+        <div class="work-card">
+          <div class="work-thumb">Design · Startup identity</div>
+          <div class="work-body">
+            <span class="work-tag">Branding</span>
+            <h3>Visual identity for an early-stage tech startup</h3>
+            <p>Logo, colour system, and pitch deck template built to hold up through a seed round.</p>
+          </div>
+        </div>
+        <div class="work-card">
+          <div class="work-thumb">Content · Health blog</div>
+          <div class="work-body">
+            <span class="work-tag">Content writing</span>
+            <h3>SEO content programme for a health &amp; wellness blog</h3>
+            <p>Twelve-article series that lifted organic traffic through structured, keyword-mapped writing.</p>
+          </div>
+        </div>
+        <div class="work-card">
+          <div class="work-thumb">Ops · Founder support</div>
+          <div class="work-body">
+            <span class="work-tag">Virtual assistance</span>
+            <h3>Ongoing admin support for a solo founder</h3>
+            <p>Inbox, scheduling, and weekly reporting handled so the founder could focus on sales.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <div class="work-thumb" style="height:280px;">Six disciplines.<br>One desk.</div>
+      <div>
+        <p class="eyebrow">About</p>
+        <h2 style="margin:14px 0 18px; font-size:clamp(1.6rem,3vw,2.1rem);">Built for people who don't want to manage five vendors</h2>
+        <p>Omni Digital Solutions exists for one reason: most small teams don't need a full agency, they need one dependable person who can move between design, code, words, and admin without losing context.</p>
+        <p>Every engagement is scoped in writing before it starts, and you always know who's doing the work — because it's the same person from the first email to the final file.</p>
+        <div class="stat-row">
+          <div class="stat"><b>6</b><span>service disciplines</span></div>
+          <div class="stat"><b>1</b><span>point of contact</span></div>
+          <div class="stat"><b>48h</b><span>typical response time</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="advisory" class="services">
+    <div class="wrap">
+      <div class="section-head"><div><p class="eyebrow">Advisory</p><h2>Your advisory control center</h2></div><p>Marketing, finance, and business guidance in your workspace.</p></div>
+      <div class="console advisory-card">
+        <p>Sign in to the Advisory App to choose your workspace and project, review agent activity, and manage approvals.</p>
+        <a class="btn btn-primary" id="advisory-link" href="advisory.html">Open Advisory control center</a>
+        <a class="btn btn-ghost" href="invoices.html">Prices, payment plans &amp; invoices</a>
+      </div>
+    </div>
+  </section>
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap contact-grid">
+      <div class="contact-info">
+        <p class="eyebrow">Get in touch</p>
+        <h2 style="margin:14px 0 16px; font-size:clamp(1.6rem,3vw,2.1rem);">Tell me what you're trying to get done</h2>
+        <p>Send a short brief and I'll reply within two working days with scope and pricing — no obligation.</p>
+        <ul class="contact-list">
+          <li><span class="k">Email</span><a href="mailto:swshozi@icloud.com">swshozi@icloud.com</a></li>
+          <li><span class="k">Response time</span>Within 48 hours, weekdays</li>
+          <li><span class="k">Based in</span>Margate, KwaZulu-Natal — available worldwide</li>
+        </ul>
+      </div>
+
+      <form class="console" id="contact-form">
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="field">
+          <label for="service">Service you need</label>
+          <select id="service" name="service">
+            <option>Web development</option>
+            <option>Graphic design &amp; branding</option>
+            <option>Content writing</option>
+            <option>Virtual assistance</option>
+            <option>Consulting</option>
+            <option>Project management</option>
+            <option>Not sure yet</option>
           </select>
         </div>
-        <div class="form-group">
-          <label for="message"><i>04</i>Scope Details / Project Parameters</label>
-          <textarea id="message" class="form-control" required placeholder="Outline your technical requirements or system goals..."></textarea>
+        <div class="field">
+          <label for="message">Project brief</label>
+          <textarea id="message" name="message" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Submit Inquiry</button>
+        <button type="submit" class="submit-btn">Prepare email brief</button>
+        <p class="form-note">Opens your email app with your brief ready to review and send.</p>
       </form>
-      <div class="form-success" id="formFeedback">Inquiry submitted. Response will be delivered via email within 24–48 hours.</div>
     </div>
-  </div>
-</section>
+  </section>
+
 </main>
 
-<!-- ================= FOOTER ================= -->
 <footer>
-  <div class="footer-content">
-    <div>&copy; 2026 Technical Services Practice. All Rights Reserved.</div>
-    <div>Secure Infrastructure | Private AI | Web Engineering<br><a href="invoices.html" style="color:var(--teal)">Prices &amp; invoices</a></div>
+  <div class="wrap footer-row">
+    <span class="mono">© <span id="year"></span> Omni Digital Solutions</span>
+    <ul class="footer-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="coastline-all-trades-demo.html">Coastline demo</a></li><li><a href="invoices.html">Invoices</a></li><li><a href="#advisory">Advisory</a></li><li><a href="#contact">Contact</a></li>
+    </ul>
   </div>
 </footer>
 
 <script>
-/* ============================================================
-   DATA — service catalog
-   ============================================================ */
-var SERVICES = [
-  {cat:'dev', tag:'Development', title:'Full-Stack Application Setup', desc:'Custom Python/Django and relational database architecture tailored to operational workflows.', items:['Schema Design (SQLite / Supabase)','Frontend Layout & Responsiveness','Deployment & Cloud Routing']},
-  {cat:'dev', tag:'Infrastructure', title:'DNS & Business Email Security', desc:'Full domain configuration to ensure high inbox deliverability and prevent domain spoofing.', items:['Cloudflare DNS Routing','MX, SPF, DKIM & DMARC Authentication','Custom Mailbox Integration']},
-  {cat:'ai', tag:'AI Engineering', title:'Private Local LLM Setup', desc:'Self-hosted AI infrastructure operating entirely on local hardware with zero external data leak risk.', items:['Ollama / LM Studio Engine Setup','Model Quantization & Benchmarking','Custom Terminal System Prompts']},
-  {cat:'sec', tag:'Security', title:'External Surface Reconnaissance', desc:'Passive OSINT analysis mapping public attack surfaces and exposed operational infrastructure.', items:['SpiderFoot & theHarvester Scanning','Subdomain & Asset Mapping','Actionable Exposure Report']},
-  {cat:'ecom', tag:'E-Commerce', title:'Multi-Store Digital Retail Setup', desc:'Scalable digital storefront configuration with localized payment gateway and logistics backend integration.', items:['Platform Setup & Branding','Payment Gateway Processing','Inventory Schemas']}
-];
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-/* ============================================================
-   ROUTER
-   ============================================================ */
-var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-function navigate(pageId){
-  var sections = document.querySelectorAll('.page');
-  sections.forEach(function(sec){ sec.classList.remove('active'); });
-  var target = document.getElementById(pageId);
-  if(target) target.classList.add('active');
-
-  document.querySelectorAll('.nav-link').forEach(function(link){
-    link.classList.toggle('active', link.getAttribute('data-nav') === pageId);
+  const navigation = document.getElementById('primary-navigation');
+  const toggle = document.querySelector('.menu-toggle');
+  toggle.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    toggle.setAttribute('aria-expanded', String(open));
+    navigation.classList.toggle('is-open', open);
   });
-
-  var nav = document.getElementById('mainNav');
-  var burger = document.getElementById('hamburger');
-  nav.classList.remove('open');
-  burger.classList.remove('open');
-
-  window.scrollTo({top:0, behavior: reducedMotion ? 'auto' : 'smooth'});
-}
-
-/* ============================================================
-   SERVICES RENDER + FILTER
-   ============================================================ */
-function renderServices(cat){
-  var grid = document.getElementById('serviceGrid');
-  var html = '';
-  SERVICES.forEach(function(svcItem){
-    if(cat !== 'all' && svcItem.cat !== cat) return;
-    html += '<article class="card">' +
-      '<div class="card-tag">' + svcItem.tag + '</div>' +
-      '<h3>' + svcItem.title + '</h3>' +
-      '<p>' + svcItem.desc + '</p>' +
-      '<ul class="deliverables">' + svcItem.items.map(function(it){ return '<li>' + it + '</li>'; }).join('') + '</ul>' +
-      '<button class="btn btn-primary svc-btn" data-nav="contact">Select Service</button>' +
-      '</article>';
+  navigation.addEventListener('click', (event) => {
+    if (event.target.closest('a')) { toggle.setAttribute('aria-expanded', 'false'); navigation.classList.remove('is-open'); }
   });
-  grid.innerHTML = html;
-}
-
-function applyFilter(cat, instant){
-  document.querySelectorAll('#filterPills .pill').forEach(function(pill){
-    pill.classList.toggle('active', pill.getAttribute('data-filter') === cat);
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const fields = new FormData(this);
+    const subject = 'Project brief — ' + fields.get('service');
+    const body = 'Name: ' + fields.get('name') + '\nEmail: ' + fields.get('email') + '\nService: ' + fields.get('service') + '\n\n' + fields.get('message');
+    window.location.href = 'mailto:swshozi@icloud.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
   });
-  var grid = document.getElementById('serviceGrid');
-  if(instant || reducedMotion){ renderServices(cat); return; }
-  grid.classList.add('fading');
-  setTimeout(function(){
-    renderServices(cat);
-    grid.classList.remove('fading');
-  }, 190);
-}
-
-/* ============================================================
-   SCRAMBLE DECODE (hero heading)
-   ============================================================ */
-function scrambleText(el, delay){
-  var text = el.textContent;
-  if(reducedMotion){ el.textContent = text; return; }
-  var glyphs = '█▓▒░<>/[]{}=+*#01';
-  var frame = 0, dur = Math.min(text.length * 2 + 10, 55);
-  setTimeout(function(){
-    (function tick(){
-      frame++;
-      var revealCount = Math.floor((frame / dur) * text.length);
-      var out = '';
-      for(var i = 0; i < text.length; i++){
-        if(i < revealCount || text[i] === ' ' || text[i] === '&') out += text[i];
-        else out += glyphs[Math.floor(Math.random() * glyphs.length)];
-      }
-      el.textContent = out;
-      if(frame < dur) setTimeout(tick, 28);
-      else el.textContent = text;
-    })();
-  }, delay);
-}
-
-/* ============================================================
-   SCROLL REVEALS
-   ============================================================ */
-var observer = new IntersectionObserver(function(entries){
-  entries.forEach(function(entry){
-    if(!entry.isIntersecting) return;
-    entry.target.classList.add('in');
-    observer.unobserve(entry.target);
-  });
-}, {threshold: 0.15});
-
-function observeAll(){
-  document.querySelectorAll('.reveal, .sec-head').forEach(function(el){
-    if(el.classList.contains('in')) return;
-    observer.observe(el);
-  });
-}
-
-/* ============================================================
-   EVENTS
-   ============================================================ */
-document.addEventListener('click', function(ev){
-  var navEl = ev.target.closest('[data-nav]');
-  if(navEl){ navigate(navEl.getAttribute('data-nav')); return; }
-
-  var exploreEl = ev.target.closest('[data-explore]');
-  if(exploreEl){
-    navigate('services');
-    applyFilter(exploreEl.getAttribute('data-explore'), true);
-    return;
-  }
-
-  var filterEl = ev.target.closest('[data-filter]');
-  if(filterEl){ applyFilter(filterEl.getAttribute('data-filter')); return; }
-});
-
-document.getElementById('hamburger').addEventListener('click', function(){
-  document.getElementById('hamburger').classList.toggle('open');
-  document.getElementById('mainNav').classList.toggle('open');
-});
-
-document.getElementById('contactForm').addEventListener('submit', function(ev){
-  ev.preventDefault();
-  var feedback = document.getElementById('formFeedback');
-  feedback.classList.add('show');
-  ev.target.reset();
-  setTimeout(function(){ feedback.classList.remove('show'); }, 7000);
-});
-
-window.addEventListener('scroll', function(){
-  document.getElementById('siteHeader').classList.toggle('scrolled', window.scrollY > 8);
-}, {passive:true});
-
-/* ============================================================
-   BOOT
-   ============================================================ */
-document.addEventListener('DOMContentLoaded', function(){
-  var track = document.getElementById('tickerTrack');
-  track.innerHTML += track.innerHTML;
-
-  renderServices('all');
-
-  document.querySelectorAll('[data-scramble]').forEach(function(el, idx){
-    scrambleText(el, 200 + idx * 380);
-  });
-
-  observeAll();
-});
 </script>
+
 </body>
 </html>
-

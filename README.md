@@ -1,4 +1,4 @@
-# Architectural Tech & Digital Solutions
+# Omni Digital Solutions
 
 The GitHub Pages company website starts at [index.html](index.html).
 
@@ -12,4 +12,26 @@ The app uses the company's information and bank details; client fields start bla
 The app has a separate storage key from the original Bob app. Use Backup to export or restore local data.
 
 No build step or dependencies are required. Publish the repository root through GitHub Pages.
+
+## Website and deployment
+
+The amber/teal homepage includes six service modules, Brief → Plan → Build → Handover, four illustrative sample engagements, and an email brief form. The form opens the visitor's email app; the visitor must send the message.
+
+The package name is `omni-digital-solutions`. GitHub Pages continues to publish `main` at the repository root, preserving https://shozi-ops.github.io/Freelancing-project-demo-s-/ and relative links. The GitHub repository name is intentionally retained to avoid a URL migration.
+
+For Vercel, the included configuration runs `npm run build` and serves `dist`. For AWS static hosting, run the same build and upload the contents of `dist` to your configured S3/CloudFront site. Preserve HTML filenames; no SPA rewrite is required.
+
+## Advisory control center
+
+The homepage links to `advisory.html`. Set `portalUrl` in `advisory-config.js` to the deployed HTTPS Advisory **frontend** URL. No destination is guessed: until configured, the page displays an explicit unavailable state. The portal opens in a separate tab to support its authentication flow without third-party iframe storage.
+
+Sign in and select the appropriate workspace/project inside the Advisory App. Register Omni Digital Solutions as its own project; do not reuse Zoey's project ID or credentials. No tenant credentials belong in this static repository.
+
+On the separate Advisory API deployment, append `https://shozi-ops.github.io` to `ALLOWED_ORIGINS`, retaining existing frontend origins. Origins contain no repository path or trailing slash. A companion backend change adds the origin to the default and example configuration. An existing environment override must also be updated and redeployed. Direct browser API calls still require the authenticated bearer token and `X-Project-ID`; CORS does not grant workspace access.
+
+If the Advisory frontend uses `/backend`, set its server-side `API_BACKEND_URL` to the deployed API. GitHub Pages cannot provide that proxy. Live Advisory access and CORS remain unverified until the deployed URLs and environment are available.
+
+## Existing invoice records
+
+The legacy browser storage key is retained so existing users keep their data. Known legacy company defaults migrate to Omni Digital Solutions for new invoices; saved invoice snapshots and historical numbers are retained. Contact information, prices, and banking details are preserved. Export a backup before changing origins: browser storage is origin-specific.
 
