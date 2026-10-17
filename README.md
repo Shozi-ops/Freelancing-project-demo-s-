@@ -23,7 +23,7 @@ For Vercel, the included configuration runs `npm run build` and serves `dist`. F
 
 ## Advisory control center
 
-The homepage links to `advisory.html`. The configured Advisory frontend is https://frontend-nine-beta-30.vercel.app and its API is https://advisory-api.vercel.app. The portal opens in a separate tab to support its authentication flow without third-party iframe storage. The production frontend proxies `/backend` to the API and uses Supabase sign-in.
+The homepage links to `advisory.html`. The configured Advisory frontend is https://frontend-nine-beta-30.vercel.app and its API is https://advisory-api.vercel.app. The portal opens in a separate tab. Advisory is currently disconnected from Zoey's database: the frontend runs its labelled browser demo and the API is unavailable pending a dedicated Supabase project. The Advisory repository includes the initial schema, isolation checks, and environment templates for that project.
 
 Sign in and select the appropriate workspace/project inside the Advisory App. Register Omni Digital Solutions as its own project; do not reuse Zoey's project ID or credentials. No tenant credentials belong in this static repository.
 
