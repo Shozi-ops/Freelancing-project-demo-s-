@@ -1,0 +1,7 @@
+{
+  "name": "omni-digital-solutions",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Omni Digital Solutions website and browser-based invoicing app",
+  "scripts": { "build": "node scripts/build.cjs" }
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>Advisory control center | Omni Digital Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#11161c;--panel:#1a222b;--amber:#E8A33D;--teal:#5FA39B;--text:#EDEFF2;--dim:#9BA6B2;--line:rgba(237,239,242,.18)}
+*{box-sizing:border-box}body{margin:0;background:var(--ink);color:var(--text);font-family:Inter,sans-serif;line-height:1.6}header{position:sticky;top:0;border-bottom:1px solid var(--line);background:rgba(17,22,28,.9);backdrop-filter:blur(16px);padding:20px 28px}header a{color:var(--text);font-family:'Space Grotesk',sans-serif;text-decoration:none}main{max-width:900px;margin:70px auto;padding:0 24px}.console{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:32px}h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,5vw,2.8rem);line-height:1.2}.eyebrow{color:var(--teal);font-family:'IBM Plex Mono',monospace}p{color:var(--dim)}a.button{display:inline-block;background:var(--amber);color:var(--ink);padding:12px 18px;border-radius:4px;text-decoration:none;font-weight:500}a:focus-visible{outline:2px solid var(--teal);outline-offset:4px}[hidden]{display:none!important}
+</style></head><body>
+<header><a href="index.html">← Omni Digital Solutions</a></header>
+<main><section class="console" aria-labelledby="title"><span class="eyebrow">ADVISORY CONTROL CENTER</span><h1 id="title">One workspace for your business decisions.</h1>
+<p>Open the Advisory App, sign in, and select your workspace and project to review marketing, finance, and business activity.</p>
+<a id="portal" class="button" hidden target="_blank" rel="noopener noreferrer">Open Advisory App ↗</a>
+<p id="status" role="status">The Advisory App address has not been configured yet. Contact <a href="mailto:swshozi@icloud.com" style="color:var(--teal)">Omni Digital Solutions</a> for access.</p><noscript><p>Enable JavaScript to load the Advisory App link.</p></noscript></section></main>
+<script src="advisory-config.js"></script><script>
+const configuredUrl = window.OMNI_ADVISORY?.portalUrl;
+if (configuredUrl) {
+  try {
+    const url = new URL(configuredUrl);
+    if (url.protocol !== 'https:' || url.username || url.password) throw new Error('HTTPS portal URL required');
+    document.getElementById('portal').href = url.href;
+    document.getElementById('portal').hidden = false;
+    document.getElementById('status').textContent = 'The control center opens in a new tab. Your access is managed inside the Advisory App.';
+  } catch { document.getElementById('status').textContent = 'The Advisory App address is unavailable. Please contact Omni Digital Solutions for access.'; }
+}
+</script></body></html>
