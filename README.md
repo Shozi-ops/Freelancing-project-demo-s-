@@ -17,7 +17,7 @@ No build step or dependencies are required. Publish the repository root through 
 
 The amber/teal homepage includes six service modules, Brief → Plan → Build → Handover, four illustrative sample engagements, and an email brief form. The form opens the visitor's email app; the visitor must send the message.
 
-The package name is `omni-digital-solutions`. GitHub Pages continues to publish `main` at the repository root, preserving https://shozi-ops.github.io/Freelancing-project-demo-s-/ and relative links. The GitHub repository name is intentionally retained to avoid a URL migration.
+The repository and package name are `omni-digital-solutions`. GitHub Pages publishes `main` at the repository root at https://shozi-ops.github.io/omni-digital-solutions/. All website links remain relative so they also work at the root of the Vercel deployment. The former repository path is no longer the canonical Pages address.
 
 For Vercel, the included configuration runs `npm run build` and serves `dist`. For AWS static hosting, run the same build and upload the contents of `dist` to your configured S3/CloudFront site. Preserve HTML filenames; no SPA rewrite is required.
 
